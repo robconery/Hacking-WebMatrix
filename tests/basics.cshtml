@@ -1,0 +1,24 @@
+﻿@using Quixote;
+@Html.CSS("tests")
+@{
+    Layout = ""; 
+}
+
+@TheFollowing.Describes("The basics of Quixote...")
+    @It.Should("Be something groovy", () => {
+        return 1.ShouldEqual(1);
+    })
+    @It.Should("Be sad when it fails", () => {
+        return 1.ShouldEqual(2);
+    })
+    @It.Should("Be something pending")
+
+@TheFollowing.Describes("Home Page")
+    @It.Should("home page should have 'Welcome' in the title", () => {
+        var home = Runner.Get("~/");
+        return home.Title.ShouldContain("Welcome");
+    })
+    @It.Should("have 4 links",() => {
+        var home = Runner.Get("~/");
+        return home.Links.ShouldHaveACountOf(4);
+    })

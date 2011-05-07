@@ -1,0 +1,17 @@
+﻿@functions{
+
+
+    public static Massive.DynamicModel Peeps {
+     get{
+
+         var dbPath = Server.MapPath("~/app_data/Larry.sdf");
+         return new Massive.DynamicModel("Data Source=" + dbPath);
+     }   
+    }
+
+    public static IEnumerable<dynamic> FindPeep(string name){
+        var sql = "SELECT * FROM Peeps where Name = @0";
+        return Peeps.Query(sql, name);
+   
+    }
+}
